@@ -32,11 +32,11 @@ interface Fruit {
   imageUrl?: string;
 }
 
-interface PageProps {
+interface Props {
   params: { id: string }
 }
 
-export default function EditFruitPage({ params }: PageProps) {
+export default function EditFruitPage({ params }:Props) {
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [fruit, setFruit] = useState<Fruit | null>(null);
