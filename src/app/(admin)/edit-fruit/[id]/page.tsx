@@ -32,8 +32,10 @@ interface Fruit {
   imageUrl?: string;
 }
 
-interface EditFruitPageProps {
-  id: string;
+interface PageProps {
+  params: {
+    id: string
+  }
 }
 
 interface VitaminEvent extends React.ChangeEvent<HTMLInputElement> {}
@@ -41,7 +43,7 @@ interface HealthBenefitEvent extends React.ChangeEvent<HTMLInputElement> {}
 interface MineralNameEvent extends React.ChangeEvent<HTMLInputElement> {}
 interface MineralValueEvent extends React.ChangeEvent<HTMLInputElement> {}
 
-export default function EditFruitPage({ params }: { params: EditFruitPageProps }) {
+export default function EditFruitPage({ params }: PageProps) {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [fruit, setFruit] = useState<Fruit | null>(null);
