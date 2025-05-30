@@ -33,12 +33,16 @@ export default function FruitDetailsPage({ params }: { params: { id: string } })
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
   console.log("image", fruit?.imageUrl)
+  
+  // Unwrap params using React.use()
+  const unwrappedParams = React.use(params);
+  const fruitId = unwrappedParams.id;
 
   useEffect(() => {
     const fetchFruitDetails = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`/api/fruits/${params.id}`);
+        const response = await axios.get(`/api/fruits/${fruitId}`);
         setFruit(response.data.fruit);
         setError(null);
       } catch (err) {
@@ -49,10 +53,10 @@ export default function FruitDetailsPage({ params }: { params: { id: string } })
       }
     };
 
-    if (params.id) {
+    if (fruitId) {
       fetchFruitDetails();
     }
-  }, [params.id]);
+  }, [fruitId]);
 
   if (loading) {
     return <FruitDetailsSkeleton />;

@@ -32,7 +32,11 @@ interface Fruit {
   imageUrl?: string;
 }
 
-export default function EditFruitPage({ params }: { params: { id: string } }) {
+type Props = {
+  params: { id: string }
+}
+
+export default function EditFruitPage({ params }: Props) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -40,15 +44,19 @@ export default function EditFruitPage({ params }: { params: { id: string } }) {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   
+  // Unwrap params using React.use()
+  const unwrappedParams = React.use(params);
+  const fruitId = unwrappedParams.id;
+  
   // New vitamin and health benefit inputs
   const [newVitamin, setNewVitamin] = useState("");
   const [newHealthBenefit, setNewHealthBenefit] = useState("");
   const [newMineralName, setNewMineralName] = useState("");
   const [newMineralValue, setNewMineralValue] = useState("");
 
-  // Initialize form
+  // Initialize form with explicit type parameter
   const form = useForm<CreateFruitFormValues>({
-    resolver: zodResolver(createFruitSchema),
+    resolver: zodResolver<CreateFruitFormValues>(createFruitSchema),
     defaultValues: {
       name: "",
       category: "fruit",
@@ -67,7 +75,7 @@ export default function EditFruitPage({ params }: { params: { id: string } }) {
     const fetchFruit = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get(`/api/fruits/${params.id}`);
+        const response = await axios.get(`/api/fruits/${fruitId}`);
         const fruitData = response.data.fruit;
         setFruit(fruitData);
         setImageUrl(fruitData.imageUrl || null);
@@ -95,10 +103,10 @@ export default function EditFruitPage({ params }: { params: { id: string } }) {
       }
     };
 
-    if (params.id) {
+    if (fruitId) {
       fetchFruit();
     }
-  }, [params.id, form]);
+  }, [fruitId, form]);
 
   // Add vitamin to the form
   const handleAddVitamin = () => {
@@ -186,7 +194,7 @@ export default function EditFruitPage({ params }: { params: { id: string } }) {
   const onSubmit = async (data: CreateFruitFormValues) => {
     setIsSubmitting(true);
     try {
-      const response = await axios.put(`/api/fruits/${params.id}`, data);
+      const response = await axios.put(`/api/fruits/${fruitId}`, data);
       
       toast({
         title: "Success",

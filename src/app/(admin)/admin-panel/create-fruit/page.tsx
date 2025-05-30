@@ -27,9 +27,9 @@ function CreateFruitPage() {
   const [newMineralName, setNewMineralName] = useState("");
   const [newMineralValue, setNewMineralValue] = useState("");
 
-  // Initialize form
+  // Initialize form with explicit type parameter
   const form = useForm<CreateFruitFormValues>({
-    resolver: zodResolver(createFruitSchema),
+    resolver: zodResolver<CreateFruitFormValues>(createFruitSchema),
     defaultValues: {
       name: "",
       category: "fruit",
