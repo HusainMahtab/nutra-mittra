@@ -1,27 +1,24 @@
-import { NextResponse } from "next/server";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import mongoose from "mongoose";
 import Fruit from "@/models/fruit.model";
 import dbConnection from "@/lib/db";
 
 // GET a single fruit by ID
-export async function GET(
-  request: NextRequest,
-  context: { params: { _id: string } }
-) {
+export async function GET(request: NextRequest) {
   try {
     await dbConnection();
 
-    const fruitId = context.params._id;
+    const url = new URL(request.url);
+    const _id = url.pathname.split("/").pop();
 
-    if (!mongoose.Types.ObjectId.isValid(fruitId)) {
+    if (!_id || !mongoose.Types.ObjectId.isValid(_id)) {
       return NextResponse.json(
         { error: "Invalid fruit ID format" },
         { status: 400 }
       );
     }
 
-    const fruit = await Fruit.findById(fruitId);
+    const fruit = await Fruit.findById(_id);
 
     if (!fruit) {
       return NextResponse.json({ error: "Fruit not found" }, { status: 404 });
@@ -38,17 +35,16 @@ export async function GET(
 }
 
 // PUT: Update a fruit by ID
-export async function PUT(
-  request: NextRequest,
-  context: { params: { _id: string } }
-) {
+export async function PUT(request: NextRequest) {
   try {
     await dbConnection();
 
-    const fruitId = context.params._id;
+    const url = new URL(request.url);
+    const _id = url.pathname.split("/").pop();
+
     const body = await request.json();
 
-    if (!mongoose.Types.ObjectId.isValid(fruitId)) {
+    if (!_id || !mongoose.Types.ObjectId.isValid(_id)) {
       return NextResponse.json(
         { error: "Invalid fruit ID format" },
         { status: 400 }
@@ -66,7 +62,7 @@ export async function PUT(
       );
     }
 
-    const updatedFruit = await Fruit.findByIdAndUpdate(fruitId, body, {
+    const updatedFruit = await Fruit.findByIdAndUpdate(_id, body, {
       new: true,
       runValidators: true,
     });
@@ -81,14 +77,12 @@ export async function PUT(
     );
   } catch (error: any) {
     console.error("Error updating fruit:", error);
-
     if (error.message.includes("duplicate key error")) {
       return NextResponse.json(
         { error: "A fruit with this name already exists" },
         { status: 409 }
       );
     }
-
     return NextResponse.json(
       { error: "Failed to update fruit" },
       { status: 500 }
@@ -97,23 +91,21 @@ export async function PUT(
 }
 
 // DELETE: Delete a fruit by ID
-export async function DELETE(
-  request: NextRequest,
-  context: { params: { _id: string } }
-) {
+export async function DELETE(request: NextRequest) {
   try {
     await dbConnection();
 
-    const fruitId = context.params._id;
+    const url = new URL(request.url);
+    const _id = url.pathname.split("/").pop();
 
-    if (!mongoose.Types.ObjectId.isValid(fruitId)) {
+    if (!_id || !mongoose.Types.ObjectId.isValid(_id)) {
       return NextResponse.json(
         { error: "Invalid fruit ID format" },
         { status: 400 }
       );
     }
 
-    const deletedFruit = await Fruit.findByIdAndDelete(fruitId);
+    const deletedFruit = await Fruit.findByIdAndDelete(_id);
 
     if (!deletedFruit) {
       return NextResponse.json({ error: "Fruit not found" }, { status: 404 });
