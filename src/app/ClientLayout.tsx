@@ -5,6 +5,7 @@ import Navbar from "@/components/navbar/Navbar";
 
 import "./globals.css";
 import { ThemeProvider } from "@/providers/ThemeProviders";
+import Footer from "@/components/footer/Footer";
 export default function ClientLayout({
   children,
 }: {
@@ -21,6 +22,7 @@ export default function ClientLayout({
       >
         <Navbar />
         {children}
+        <Footer/>
       </ThemeProvider>
       
     </SessionProvider>

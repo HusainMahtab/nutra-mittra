@@ -67,13 +67,13 @@ export default function FruitCard({ fruit }: FruitCardProps) {
         </div>
         
         {fruit.description && (
-          <p className="text-sm mb-3 line-clamp-2">
+          <p className="text-sm mb-3 line-clamp-5">
             {fruit.description}
           </p>
         )}
         
         {fruit.calories && (
-          <p className="text-sm mb-2">
+          <p className="text-sm">
             <span className="font-medium">Calories:</span> {fruit.calories}kcal/100gm
           </p>
         )}

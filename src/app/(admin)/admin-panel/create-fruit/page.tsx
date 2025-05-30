@@ -164,7 +164,7 @@ function CreateFruitPage() {
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit) as React.FormEventHandler} className="space-y-6">
               {/* Basic Information */}
-              <div className="bg-white p-6 rounded-lg shadow-md">
+              <div className="p-6 rounded-lg shadow-md">
                 <h2 className="text-xl font-semibold mb-4">Basic Information</h2>
                 
                 <FormField
@@ -283,7 +283,7 @@ function CreateFruitPage() {
               </div>
 
               {/* Vitamins Section */}
-              <div className="bg-white p-6 rounded-lg shadow-md">
+              <div className="p-6 rounded-lg shadow-md">
                 <h2 className="text-xl font-semibold mb-4">Vitamins</h2>
                 
                 <div className="flex mb-4">
@@ -305,7 +305,7 @@ function CreateFruitPage() {
 
                 <div className="space-y-2">
                   {form.watch("vitamins")?.map((vitamin, index) => (
-                    <div key={index} className="flex items-center justify-between bg-gray-50 p-2 rounded-md">
+                    <div key={index} className="flex items-center justify-between p-2 rounded-md">
                       <span>{vitamin}</span>
                       <Button
                         type="button"
@@ -318,13 +318,13 @@ function CreateFruitPage() {
                     </div>
                   ))}
                   {(!form.watch("vitamins") || form.watch("vitamins").length === 0) && (
-                    <p className="text-gray-500 text-sm italic">No vitamins added yet</p>
+                    <p className="text-sm italic">No vitamins added yet</p>
                   )}
                 </div>
               </div>
 
               {/* Origin Story Section */}
-              <div className="bg-white p-6 rounded-lg shadow-md">
+              <div className="p-6 rounded-lg shadow-md">
                 <h2 className="text-xl font-semibold mb-4">Origin Story</h2>
                 
                 <FormField
@@ -360,7 +360,7 @@ function CreateFruitPage() {
         {/* Right column */}
         <div className="space-y-6">
           {/* Minerals Section */}
-          <div className="bg-white p-6 rounded-lg shadow-md">
+          <div className="p-6 rounded-lg shadow-md">
             <h2 className="text-xl font-semibold mb-4">
               Minerals <span className="text-red-500">*</span>
             </h2>
@@ -393,7 +393,7 @@ function CreateFruitPage() {
 
             <div className="space-y-2">
               {Object.entries(form.watch("minerals") || {}).map(([name, value], index) => (
-                <div key={index} className="flex items-center justify-between bg-gray-50 p-2 rounded-md">
+                <div key={index} className="flex items-center justify-between p-2 rounded-md">
                   <span>
                     {name}: {value} gm
                   </span>
@@ -418,7 +418,7 @@ function CreateFruitPage() {
           </div>
 
           {/* Health Benefits Section */}
-          <div className="bg-white p-6 rounded-lg shadow-md">
+          <div className="p-6 rounded-lg shadow-md">
             <h2 className="text-xl font-semibold mb-4">Health Benefits</h2>
             
             <div className="flex mb-4">
@@ -440,7 +440,7 @@ function CreateFruitPage() {
 
             <div className="space-y-2">
               {form.watch("healthBenefits")?.map((benefit, index) => (
-                <div key={index} className="flex items-center justify-between bg-gray-50 p-2 rounded-md">
+                <div key={index} className="flex items-center justify-between p-2 rounded-md">
                   <span>{benefit}</span>
                   <Button
                     type="button"
@@ -459,7 +459,7 @@ function CreateFruitPage() {
           </div>
 
           {/* Image Upload Section */}
-          <div className="bg-white p-6 rounded-lg shadow-md">
+          <div className="p-6 rounded-lg shadow-md">
             <h2 className="text-xl font-semibold mb-4">Image Upload</h2>
             
             {!createdFruitId ? (

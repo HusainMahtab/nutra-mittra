@@ -2,10 +2,10 @@
 
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Check, Leaf, Award, Users, Heart } from "lucide-react";
+import { ArrowRight, Check, Leaf, Award, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 // Import images
 import aboutHero from "../../../public/logo.png"; // Replace with your actual image
@@ -43,6 +43,7 @@ const scaleIn = {
 };
 
 export default function AboutPage() {
+  const router = useRouter();
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -75,7 +76,7 @@ export default function AboutPage() {
                 At Nutraमित्रा, we believe that understanding the nutritional value of what we eat is the first step toward better health. Our mission is to make nutritional information accessible, understandable, and actionable for everyone.
               </motion.p>
               <motion.div variants={fadeIn}>
-                <Button className="bg-primary hover:bg-primary/90 mt-4" size="lg">
+                <Button onClick={()=>{router.push("/fruits")}} className="bg-primary hover:bg-primary/90 mt-4" size="lg">
                   Explore Our Collection <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </motion.div>
@@ -430,7 +431,7 @@ export default function AboutPage() {
               Explore our comprehensive database of fruits and vegetables to make more informed nutritional choices and take a step toward a healthier lifestyle.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-background text-primary hover:bg-background/90">
+              <Button onClick={()=>router.push('/fruits')} size="lg" className="bg-background text-primary hover:bg-background/90">
                 Explore Our Collection
               </Button>
               <Button size="lg" variant="outline" className="border-background text-background hover:bg-primary-foreground/10">
