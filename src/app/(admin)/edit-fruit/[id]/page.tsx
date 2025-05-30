@@ -16,6 +16,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import FruitImageUpload from '@/components/FruitImageUpload';
 import { Loader2 } from 'lucide-react';
+import { useParams } from 'next/navigation';
 
 interface Fruit {
   _id: string;
@@ -32,18 +33,12 @@ interface Fruit {
   imageUrl?: string;
 }
 
-interface PageProps {
-  params: {
-    id: string
-  }
-}
-
 interface VitaminEvent extends React.ChangeEvent<HTMLInputElement> {}
 interface HealthBenefitEvent extends React.ChangeEvent<HTMLInputElement> {}
 interface MineralNameEvent extends React.ChangeEvent<HTMLInputElement> {}
 interface MineralValueEvent extends React.ChangeEvent<HTMLInputElement> {}
 
-export default function EditFruitPage({ params }: PageProps) {
+export default function EditFruitPage() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [fruit, setFruit] = useState<Fruit | null>(null);
@@ -51,8 +46,8 @@ export default function EditFruitPage({ params }: PageProps) {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
   
-  // Use params directly
-  const fruitId: string = params.id;
+  const params = useParams();
+  const fruitId = params?.id as string;
   
   // New vitamin and health benefit inputs
   const [newVitamin, setNewVitamin] = useState<string>("");
