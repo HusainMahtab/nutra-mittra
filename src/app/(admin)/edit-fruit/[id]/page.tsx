@@ -32,26 +32,31 @@ interface Fruit {
   imageUrl?: string;
 }
 
-interface Props {
-  params: { id: string }
+interface EditFruitPageProps {
+  id: string;
 }
 
-export default function EditFruitPage({ params }:Props) {
-  const [isLoading, setIsLoading] = useState(true);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+interface VitaminEvent extends React.ChangeEvent<HTMLInputElement> {}
+interface HealthBenefitEvent extends React.ChangeEvent<HTMLInputElement> {}
+interface MineralNameEvent extends React.ChangeEvent<HTMLInputElement> {}
+interface MineralValueEvent extends React.ChangeEvent<HTMLInputElement> {}
+
+export default function EditFruitPage({ params }: { params: EditFruitPageProps }) {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [fruit, setFruit] = useState<Fruit | null>(null);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
   
   // Use params directly
-  const fruitId = params.id;
+  const fruitId: string = params.id;
   
   // New vitamin and health benefit inputs
-  const [newVitamin, setNewVitamin] = useState("");
-  const [newHealthBenefit, setNewHealthBenefit] = useState("");
-  const [newMineralName, setNewMineralName] = useState("");
-  const [newMineralValue, setNewMineralValue] = useState("");
+  const [newVitamin, setNewVitamin] = useState<string>("");
+  const [newHealthBenefit, setNewHealthBenefit] = useState<string>("");
+  const [newMineralName, setNewMineralName] = useState<string>("");
+  const [newMineralValue, setNewMineralValue] = useState<string>("");
 
   // Initialize form with explicit type parameter
   const form = useForm<CreateFruitFormValues>({
@@ -70,12 +75,12 @@ export default function EditFruitPage({ params }:Props) {
     } as CreateFruitFormValues, // Ensure all required fields are present and non-optional
   });
 
-  useEffect(() => {
-    const fetchFruit = async () => {
+  useEffect((): void => {
+    const fetchFruit = async (): Promise<void> => {
       try {
         setIsLoading(true);
         const response = await axios.get(`/api/fruits/${fruitId}`);
-        const fruitData = response.data.fruit;
+        const fruitData: Fruit = response.data.fruit;
         setFruit(fruitData);
         setImageUrl(fruitData.imageUrl || null);
         
@@ -108,9 +113,9 @@ export default function EditFruitPage({ params }:Props) {
   }, [fruitId, form]);
 
   // Add vitamin to the form
-  const handleAddVitamin = () => {
+  const handleAddVitamin = (): void => {
     if (newVitamin.trim() !== "") {
-      const currentVitamins = form.getValues("vitamins") || [];
+      const currentVitamins: string[] = form.getValues("vitamins") || [];
       if (!currentVitamins.includes(newVitamin.trim())) {
         form.setValue("vitamins", [...currentVitamins, newVitamin.trim()]);
         setNewVitamin("");
@@ -119,8 +124,8 @@ export default function EditFruitPage({ params }:Props) {
   };
 
   // Remove vitamin from the form
-  const handleRemoveVitamin = (vitamin: string) => {
-    const currentVitamins = form.getValues("vitamins") || [];
+  const handleRemoveVitamin = (vitamin: string): void => {
+    const currentVitamins: string[] = form.getValues("vitamins") || [];
     form.setValue(
       "vitamins",
       currentVitamins.filter((v) => v !== vitamin)
@@ -128,9 +133,9 @@ export default function EditFruitPage({ params }:Props) {
   };
 
   // Add health benefit to the form
-  const handleAddHealthBenefit = () => {
+  const handleAddHealthBenefit = (): void => {
     if (newHealthBenefit.trim() !== "") {
-      const currentBenefits = form.getValues("healthBenefits") || [];
+      const currentBenefits: string[] = form.getValues("healthBenefits") || [];
       if (!currentBenefits.includes(newHealthBenefit.trim())) {
         form.setValue("healthBenefits", [...currentBenefits, newHealthBenefit.trim()]);
         setNewHealthBenefit("");
@@ -139,8 +144,8 @@ export default function EditFruitPage({ params }:Props) {
   };
 
   // Remove health benefit from the form
-  const handleRemoveHealthBenefit = (benefit: string) => {
-    const currentBenefits = form.getValues("healthBenefits") || [];
+  const handleRemoveHealthBenefit = (benefit: string): void => {
+    const currentBenefits: string[] = form.getValues("healthBenefits") || [];
     form.setValue(
       "healthBenefits",
       currentBenefits.filter((b) => b !== benefit)
@@ -148,11 +153,11 @@ export default function EditFruitPage({ params }:Props) {
   };
 
   // Add mineral to the form
-  const handleAddMineral = () => {
+  const handleAddMineral = (): void => {
     if (newMineralName.trim() !== "" && newMineralValue.trim() !== "") {
-      const mineralValue = parseFloat(newMineralValue);
+      const mineralValue: number = parseFloat(newMineralValue);
       if (!isNaN(mineralValue)) {
-        const currentMinerals = form.getValues("minerals") || {};
+        const currentMinerals: Record<string, number> = form.getValues("minerals") || {};
         form.setValue("minerals", {
           ...currentMinerals,
           [newMineralName.trim()]: mineralValue,
@@ -164,15 +169,15 @@ export default function EditFruitPage({ params }:Props) {
   };
 
   // Remove mineral from the form
-  const handleRemoveMineral = (mineralName: string) => {
-    const currentMinerals = form.getValues("minerals") || {};
-    const updatedMinerals = { ...currentMinerals };
+  const handleRemoveMineral = (mineralName: string): void => {
+    const currentMinerals: Record<string, number> = form.getValues("minerals") || {};
+    const updatedMinerals: Record<string, number> = { ...currentMinerals };
     delete updatedMinerals[mineralName];
     form.setValue("minerals", updatedMinerals);
   };
 
   // Handle image upload success
-  const handleImageUploadSuccess = (url: string) => {
+  const handleImageUploadSuccess = (url: string): void => {
     setImageUrl(url);
     toast({
       title: "Success",
@@ -181,7 +186,7 @@ export default function EditFruitPage({ params }:Props) {
   };
 
   // Handle image upload error
-  const handleImageUploadError = (errorMessage: string) => {
+  const handleImageUploadError = (errorMessage: string): void => {
     toast({
       title: "Error",
       description: `Failed to upload image: ${errorMessage}`,
@@ -190,7 +195,7 @@ export default function EditFruitPage({ params }:Props) {
   };
 
   // Form submission handler
-  const onSubmit = async (data: CreateFruitFormValues) => {
+  const onSubmit = async (data: CreateFruitFormValues): Promise<void> => {
     setIsSubmitting(true);
     try {
       const response = await axios.put(`/api/fruits/${fruitId}`, data);
@@ -232,7 +237,7 @@ export default function EditFruitPage({ params }:Props) {
         <Button 
           className="mt-4" 
           variant="outline" 
-          onClick={() => router.push('/all')}
+          onClick={(): void => router.push('/all')}
         >
           Back to All Fruits
         </Button>
@@ -246,7 +251,7 @@ export default function EditFruitPage({ params }:Props) {
         <h1 className="text-3xl font-bold">Edit {fruit?.name}</h1>
         <Button 
           variant="outline" 
-          onClick={() => router.push('/all')}
+          onClick={(): void => router.push('/all')}
         >
           Cancel
         </Button>
@@ -384,7 +389,7 @@ export default function EditFruitPage({ params }:Props) {
                   <Input
                     type="text"
                     value={newVitamin}
-                    onChange={(e) => setNewVitamin(e.target.value)}
+                    onChange={(e: VitaminEvent) => setNewVitamin(e.target.value)}
                     placeholder="Add vitamin (e.g., Vitamin C)"
                     className="flex-grow rounded-r-none"
                   />
@@ -398,13 +403,13 @@ export default function EditFruitPage({ params }:Props) {
                 </div>
 
                 <div className="space-y-2">
-                  {form.watch("vitamins")?.map((vitamin, index) => (
+                  {form.watch("vitamins")?.map((vitamin: string, index: number) => (
                     <div key={index} className="flex items-center justify-between bg-gray-50 p-2 rounded-md">
                       <span>{vitamin}</span>
                       <Button
                         type="button"
                         variant="ghost"
-                        onClick={() => handleRemoveVitamin(vitamin)}
+                        onClick={(): void => handleRemoveVitamin(vitamin)}
                         className="h-8 text-red-500 hover:text-red-700 hover:bg-red-50"
                       >
                         Remove
@@ -462,14 +467,14 @@ export default function EditFruitPage({ params }:Props) {
                 <Input
                   type="text"
                   value={newMineralName}
-                  onChange={(e) => setNewMineralName(e.target.value)}
+                  onChange={(e: MineralNameEvent) => setNewMineralName(e.target.value)}
                   placeholder="Mineral name"
                   className="rounded-r-none"
                 />
                 <Input
                   type="number"
                   value={newMineralValue}
-                  onChange={(e) => setNewMineralValue(e.target.value)}
+                  onChange={(e: MineralValueEvent) => setNewMineralValue(e.target.value)}
                   placeholder="Value (mg)"
                   className="rounded-l-none rounded-r-none"
                   min="0"
@@ -486,7 +491,7 @@ export default function EditFruitPage({ params }:Props) {
             </div>
 
             <div className="space-y-2">
-              {Object.entries(form.watch("minerals") || {}).map(([name, value], index) => (
+              {Object.entries(form.watch("minerals") || {}).map(([name, value]: [string, number], index: number) => (
                 <div key={index} className="flex items-center justify-between bg-gray-50 p-2 rounded-md">
                   <span>
                     <span className="font-medium">{name}:</span> {value} mg
@@ -494,7 +499,7 @@ export default function EditFruitPage({ params }:Props) {
                   <Button
                     type="button"
                     variant="ghost"
-                    onClick={() => handleRemoveMineral(name)}
+                    onClick={(): void => handleRemoveMineral(name)}
                     className="h-8 text-red-500 hover:text-red-700 hover:bg-red-50"
                   >
                     Remove
@@ -515,7 +520,7 @@ export default function EditFruitPage({ params }:Props) {
               <Input
                 type="text"
                 value={newHealthBenefit}
-                onChange={(e) => setNewHealthBenefit(e.target.value)}
+                onChange={(e: HealthBenefitEvent) => setNewHealthBenefit(e.target.value)}
                 placeholder="Add health benefit"
                 className="flex-grow rounded-r-none"
               />
@@ -529,13 +534,13 @@ export default function EditFruitPage({ params }:Props) {
             </div>
 
             <div className="space-y-2">
-              {form.watch("healthBenefits")?.map((benefit, index) => (
+              {form.watch("healthBenefits")?.map((benefit: string, index: number) => (
                 <div key={index} className="flex items-center justify-between bg-gray-50 p-2 rounded-md">
                   <span>{benefit}</span>
                   <Button
                     type="button"
                     variant="ghost"
-                    onClick={() => handleRemoveHealthBenefit(benefit)}
+                    onClick={(): void => handleRemoveHealthBenefit(benefit)}
                     className="h-8 text-red-500 hover:text-red-700 hover:bg-red-50"
                   >
                     Remove
