@@ -7,6 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 import { createFruitSchema, CreateFruitFormValues } from '@/schemas/create-fruit-schema';
 import { toast } from '@/components/ui/use-toast';
+import {z} from "zod";
 
 // UI Components
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
@@ -26,10 +27,10 @@ function CreateFruitPage() {
   const [newHealthBenefit, setNewHealthBenefit] = useState("");
   const [newMineralName, setNewMineralName] = useState("");
   const [newMineralValue, setNewMineralValue] = useState("");
+  const router = useRouter();
 
-  // Initialize form with explicit type parameter
-  const form = useForm<CreateFruitFormValues>({
-    resolver: zodResolver<CreateFruitFormValues>(createFruitSchema),
+  const form = useForm<z.infer<typeof createFruitSchema>>({
+    resolver: zodResolver(createFruitSchema),
     defaultValues: {
       name: "",
       category: "fruit",
@@ -43,6 +44,7 @@ function CreateFruitPage() {
       originStory: "",
     },
   });
+  
 
   // Add vitamin to the form
   const handleAddVitamin = () => {

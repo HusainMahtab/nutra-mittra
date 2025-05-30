@@ -32,21 +32,16 @@ interface Fruit {
   imageUrl?: string;
 }
 
-type Props = {
-  params: { id: string }
-}
-
-export default function EditFruitPage({ params }: Props) {
-  const router = useRouter();
+export default function EditFruitPage({ params }: { params: { id: string } }) {
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [fruit, setFruit] = useState<Fruit | null>(null);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
   
-  // Unwrap params using React.use()
-  const unwrappedParams = React.use(params);
-  const fruitId = unwrappedParams.id;
+  // Use params directly
+  const fruitId = params.id;
   
   // New vitamin and health benefit inputs
   const [newVitamin, setNewVitamin] = useState("");
@@ -56,7 +51,7 @@ export default function EditFruitPage({ params }: Props) {
 
   // Initialize form with explicit type parameter
   const form = useForm<CreateFruitFormValues>({
-    resolver: zodResolver<CreateFruitFormValues>(createFruitSchema),
+    resolver: zodResolver(createFruitSchema),
     defaultValues: {
       name: "",
       category: "fruit",
@@ -68,7 +63,7 @@ export default function EditFruitPage({ params }: Props) {
       seasonalAvailability: "",
       isOrganic: false,
       originStory: "",
-    },
+    } as CreateFruitFormValues, // Ensure all required fields are present and non-optional
   });
 
   useEffect(() => {
@@ -84,15 +79,15 @@ export default function EditFruitPage({ params }: Props) {
         form.reset({
           name: fruitData.name,
           category: fruitData.category,
-          description: fruitData.description || "",
-          calories: fruitData.calories || "",
-          vitamins: fruitData.vitamins || [],
-          minerals: fruitData.minerals || {},
-          healthBenefits: fruitData.healthBenefits || [],
-          seasonalAvailability: fruitData.seasonalAvailability || "",
-          isOrganic: fruitData.isOrganic || false,
-          originStory: fruitData.originStory || "",
-        });
+          description: fruitData.description ?? "",
+          calories: fruitData.calories ?? "",
+          vitamins: fruitData.vitamins ?? [],
+          minerals: fruitData.minerals ?? {},
+          healthBenefits: fruitData.healthBenefits ?? [],
+          seasonalAvailability: fruitData.seasonalAvailability ?? "",
+          isOrganic: fruitData.isOrganic ?? false,
+          originStory: fruitData.originStory ?? "",
+        } as CreateFruitFormValues);
         
         setError(null);
       } catch (err) {

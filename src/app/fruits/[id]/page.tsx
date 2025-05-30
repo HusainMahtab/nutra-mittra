@@ -9,7 +9,6 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Card, CardContent } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
 import { ExpandableText } from '@/components/ExpandableText';
 
 interface Fruit {
@@ -34,9 +33,8 @@ export default function FruitDetailsPage({ params }: { params: { id: string } })
   const router = useRouter();
   console.log("image", fruit?.imageUrl)
   
-  // Unwrap params using React.use()
-  const unwrappedParams = React.use(params);
-  const fruitId = unwrappedParams.id;
+  // Use params directly
+  const fruitId = params.id;
 
   useEffect(() => {
     const fetchFruitDetails = async () => {
