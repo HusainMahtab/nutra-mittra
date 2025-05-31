@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
 
     // Get the form data
     const formData = await request.formData();
-    console.log(formData);
+    //console.log(formData);
     const file = formData.get("file") as File | null;
     const fruitId = formData.get("fruitId") as string | null;
 
@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
     const stream = Readable.from(Buffer.from(buffer));
 
     // Upload to Cloudinary
-    return new Promise((resolve, reject) => {
+    return new Promise<Response>((resolve, reject) => {
       const uploadStream = cloudinary.uploader.upload_stream(
         {
           folder: "fruit-images",
