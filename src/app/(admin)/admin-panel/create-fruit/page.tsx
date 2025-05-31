@@ -28,25 +28,20 @@ function CreateFruitPage() {
   const [newMineralName, setNewMineralName] = useState("");
   const [newMineralValue, setNewMineralValue] = useState("");
   const router = useRouter();
+  const schemaDefaults = createFruitSchema.parse({});
+
 
   const form = useForm<CreateFruitFormValues>({
   resolver: zodResolver(createFruitSchema),
   defaultValues: {
+    ...schemaDefaults,
     name: "",
     category: "fruit",
-    description: "",
     calories: "",
-    vitamins: [], // ✅ must be defined
-    minerals: {}, // ✅ must be defined
-    healthBenefits: [], // ✅ must be defined
-    seasonalAvailability: "",
-    isOrganic: false, // ✅ must be defined
-    originStory: "",
+    isOrganic: false,
   },
 });
- 
 
-  
 
   // Add vitamin to the form
   const handleAddVitamin = () => {
