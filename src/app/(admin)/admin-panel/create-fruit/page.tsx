@@ -414,9 +414,9 @@ const form = useForm<CreateFruitFormValues>({
               )}
             </div>
             
-            {form.formState.errors.minerals && (
-              <p className="text-red-500 text-sm mt-2">{form.formState.errors.minerals.message}</p>
-            )}
+            {/* {form.formState.errors.minerals && (
+              <p className="text-red-500 text-sm mt-2">{form.formState.errors.minerals}</p>
+            )} */}
           </div>
 
           {/* Health Benefits Section */}

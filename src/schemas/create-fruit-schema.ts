@@ -12,7 +12,7 @@ export const createFruitSchema = z.object({
   vitamins: z.array(z.string()).default([]), // ✅ Default to empty array
   healthBenefits: z.array(z.string()).default([]), // ✅ Default to empty array
   minerals: z.record(z.string(), z.number()).default({}),
-  originStory:z.string() // ✅ Default to empty object
+  originStory: z.string().optional()
 });
 
 export type CreateFruitFormValues = z.infer<typeof createFruitSchema>;
