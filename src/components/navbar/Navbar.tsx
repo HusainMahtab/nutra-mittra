@@ -42,22 +42,6 @@ export default function Navbar() {
   const user = session.data?.user;
   const [searchTerm, setSearchTerm] = useState("");
 
-  const isOnFruitsPage = pathname === "/all-fruits" || pathname.includes("/fruits");
-  const isOnVegetablesPage = pathname === "/vegetables" || pathname.includes("/vegetable");
-  
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!searchTerm.trim()) return;
-    
-    if (isOnFruitsPage) {
-      router.push(`/all-fruits?search=${encodeURIComponent(searchTerm)}`);
-    } else if (isOnVegetablesPage) {
-      router.push(`/vegetables?search=${encodeURIComponent(searchTerm)}`);
-    } else {
-      router.push(`/search?q=${encodeURIComponent(searchTerm)}`);
-    }
-  };
-
   const handleLogout = () => {
     signOut({ callbackUrl: "/" });
   };
@@ -98,23 +82,7 @@ export default function Navbar() {
         {/* Right side elements (Theme toggle and profile) */}
         <div className="flex items-center gap-4">
           {/* Search Bar - Only show on fruits or vegetables pages */}
-          {(isOnFruitsPage || isOnVegetablesPage) && (
-            <form onSubmit={handleSearch} className="hidden md:flex items-center max-w-md mx-4">
-              <div className="relative w-full">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <Input
-                  type="text"
-                  placeholder={`Search ${isOnFruitsPage ? 'fruits' : 'vegetables'}...`}
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 w-full h-9"
-                />
-              </div>
-              <Button type="submit" size="sm" className="ml-2">
-                Search
-              </Button>
-            </form>
-          )}
+        
 
           <ThemeToggle />
 
@@ -191,25 +159,6 @@ export default function Navbar() {
                     </div>
                     <span className="font-bold">Nutra Mitra</span>
                   </Link>
-                  
-                  {/* Mobile Search */}
-                  {(isOnFruitsPage || isOnVegetablesPage) && (
-                    <form onSubmit={handleSearch} className="mb-6">
-                      <div className="relative w-full mb-2">
-                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input
-                          type="text"
-                          placeholder={`Search ${isOnFruitsPage ? 'fruits' : 'vegetables'}...`}
-                          value={searchTerm}
-                          onChange={(e) => setSearchTerm(e.target.value)}
-                          className="pl-10 w-full"
-                        />
-                      </div>
-                      <Button type="submit" className="w-full">
-                        Search
-                      </Button>
-                    </form>
-                  )}
                   
                   <nav className="flex flex-col gap-4">
                     {navLinks.map((link) => (

@@ -10,8 +10,17 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import logo from "../../public/logo.png";
-import HomeImage from "../../public/home-image.png"; // Replace with your actual image path
+import banner1 from "../../public/banner1.png"
+import banner2 from "../../public/banner2.png";
+import banner3 from "../../public/banner3.png";
+import banner4 from "../../public/banner4.png";
+// Hero images - replace with your actual image paths
+const heroImages = [
+  banner1,
+  banner2,
+  banner3,
+  banner4
+];
 interface Fruit {
   _id: string;
   name: string;
@@ -29,6 +38,7 @@ interface Fruit {
 
 export default function Home() {
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,6 +51,17 @@ export default function Home() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Auto-rotate hero images
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => 
+        (prevIndex + 1) % heroImages.length
+      );
+    }, 4000); // Change image every 4 seconds
+
+    return () => clearInterval(interval);
   }, []);
   const [fruits, setFruits] = useState<Fruit[]>([]);
   const [filteredFruits, setFilteredFruits] = useState<Fruit[]>([]);
@@ -142,142 +163,198 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-b from-background to-background/80 relative">
       {/* Hero Section */}
       <motion.section
-        className="relative h-[80vh] flex items-center overflow-hidden"
+        className="relative min-h-screen py-2 flex items-center overflow-hidden bg-gradient-to-br from-background via-secondary/30 to-accent/20"
         initial="hidden"
         animate="visible"
         variants={heroVariants}
       >
+        {/* Animated Background Elements using your defined colors */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/20 dark:from-primary/5 dark:to-primary/10 opacity-70"></div>
+          <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-xl opacity-30 animate-blob"></div>
+          <div className="absolute top-40 right-10 w-72 h-72 bg-secondary/40 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
+          <div className="absolute bottom-20 left-20 w-72 h-72 bg-accent/40 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-xl opacity-30 animate-blob animation-delay-4000"></div>
         </div>
 
         <div className="container mx-auto px-4 z-10 relative">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <motion.div className="space-y-6" variants={containerVariants}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
+            {/* Left Content */}
+            <motion.div className="space-y-8" variants={containerVariants}>
               <motion.div variants={itemVariants}>
-                <Badge className="px-3 py-1 text-sm bg-primary/20 text-primary-foreground dark:bg-primary/30 dark:text-primary-foreground border-primary/30 mb-4">
-                  Healthy Living
+                <Badge className="px-4 py-2 text-sm bg-primary text-primary-foreground border-0 shadow-lg">
+                  🌱 Healthy Living
                 </Badge>
               </motion.div>
 
               <motion.h1
-                className="text-4xl md:text-6xl font-bold text-foreground leading-tight"
+                className="text-5xl md:text-5xl font-bold text-foreground leading-tight"
                 variants={itemVariants}
               >
                 Discover the Power of{" "}
-                <span className="text-primary dark:text-primary">Nature's Nutrition</span>
+                <span className="text-primary">
+                  Nature's Nutrition
+                </span>
               </motion.h1>
 
               <motion.p
-                className="text-lg text-muted-foreground max-w-lg"
+                className="text-xl text-muted-foreground max-w-2xl leading-relaxed"
                 variants={itemVariants}
               >
-                Explore our collection of fruits and vegetables, learn about
-                their nutritional benefits, and make informed choices for a
-                healthier lifestyle.
+                Explore our comprehensive collection of fruits and vegetables, discover their incredible nutritional benefits, and make informed choices for a healthier, more vibrant lifestyle.
               </motion.p>
 
               <motion.div
-                className="flex flex-col sm:flex-row gap-4 pt-4"
+                className="flex flex-col sm:flex-row gap-4 pt-6"
                 variants={itemVariants}
               >
                 <Button
                   size="lg"
-                  className="bg-primary hover:bg-primary/90"
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-3"
                   onClick={() => {
                     const collectionSection =
                       document.getElementById("collection-section");
                     collectionSection?.scrollIntoView({ behavior: "smooth" });
                   }}
                 >
-                  Explore All <ArrowRight className="ml-2 h-4 w-4" />
+                  Explore Collection <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-primary text-primary hover:bg-primary/10 dark:hover:bg-primary/20"
+                  className="border-2 border-primary text-primary hover:bg-primary/10 px-8 py-3 transition-all duration-300"
                 >
                   Learn More
                 </Button>
               </motion.div>
+
+              {/* Stats */}
+              <motion.div 
+                className="grid grid-cols-3 gap-6 pt-8"
+                variants={itemVariants}
+              >
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-primary">100+</div>
+                  <div className="text-sm text-muted-foreground">Fruits & Vegetables</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-primary">50+</div>
+                  <div className="text-sm text-muted-foreground">Health Benefits</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-primary">24/7</div>
+                  <div className="text-sm text-muted-foreground">Nutrition Guide</div>
+                </div>
+              </motion.div>
             </motion.div>
 
+            {/* Right Image Section */}
             <motion.div
-              className="hidden md:flex justify-center relative"
+              className="flex justify-center relative"
               initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             >
-              <div className="relative w-[400px] h-[400px]">
-                <div className="absolute top-0 left-0 w-full h-full bg-primary/20 dark:bg-primary/10 rounded-full opacity-20 animate-pulse"></div>
-                <Image
-                  src={HomeImage}
-                  alt="Fresh fruits and vegetables"
-                  width={400}
-                  height={400}
-                  className="rounded-full object-cover shadow-xl"
-                  priority
-                />
+              <div className="relative w-[500px] h-[500px]">
+               {/* Background Glow using your defined colors */}
+                <div className="absolute top-0 left-0 w-full h-full bg-primary/20 rounded-full opacity-60 animate-pulse"></div>
+                
+                {/* Main Image Container */}
+                <div className="relative w-full h-full rounded-full overflow-hidden shadow-2xl border-4 border-card">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={currentImageIndex}
+                      initial={{ opacity: 0, scale: 1.1 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.9 }}
+                      transition={{ duration: 0.5 }}
+                      className="w-full h-full"
+                    >
+                       <Image
+                        src={heroImages[currentImageIndex]}
+                        alt={`Healthy nutrition ${currentImageIndex + 1}`}
+                        width={500}
+                        height={500}
+                        className="w-full h-full object-cover"
+                        priority
+                      />
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+
+                {/* Image Indicators */}
+                <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 py-2">
+                  {heroImages.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentImageIndex(index)}
+                      className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                        index === currentImageIndex 
+                          ? 'bg-primary scale-125' 
+                          : 'bg-muted hover:bg-primary/60'
+                      }`}
+                    />
+                  ))}
+                </div>
+
+                {/* Floating Elements using your defined colors */}
                 <motion.div
-                  className="absolute -top-4 -right-4 bg-card p-3 rounded-full shadow-lg"
+                  className="absolute -top-6 -right-6 bg-card p-4 rounded-full shadow-xl border border-border"
                   initial={{ scale: 0 }}
                   animate={{ 
-                    scale: [1, 1.2, 1],
+                    scale: [1, 1.1, 1],
                     rotate: [0, -10, 0, 10, 0],
-                    y: [0, -15, 0],
-                    x: [0, 10, 0, -10, 0]
+                    y: [0, -10, 0],
                   }}
                   transition={{ 
                     repeat: Infinity, 
-                    duration: 6,
+                    duration: 4,
                     ease: "easeInOut"
                   }}
                 >
-                  <motion.div
-                    animate={{ rotate: [0, 360] }}
-                    transition={{ 
-                      repeat: Infinity, 
-                      duration: 12,
-                      ease: "linear"
-                    }}
-                  >
-                    <Leaf className="h-8 w-8 text-green-500" />
-                  </motion.div>
+                  <Leaf className="h-8 w-8 text-primary" />
                 </motion.div>
+
                 <motion.div
-                  className="absolute -bottom-4 -left-4 bg-card p-3 rounded-full shadow-lg"
+                  className="absolute -bottom-6 -left-6 bg-card p-4 rounded-full shadow-xl border border-border"
                   initial={{ scale: 0 }}
                   animate={{ 
-                    scale: [1, 1.2, 1],
+                    scale: [1, 1.1, 1],
                     rotate: [0, 10, 0, -10, 0],
-                    y: [0, 15, 0],
-                    x: [0, -10, 0, 10, 0]
+                    y: [0, 10, 0],
                   }}
                   transition={{ 
                     repeat: Infinity, 
-                    duration: 6,
+                    duration: 4,
                     ease: "easeInOut",
                     delay: 0.5
                   }}
                 >
-                  <motion.div
-                    animate={{ rotate: [0, -360] }}
-                    transition={{ 
-                      repeat: Infinity, 
-                      duration: 12,
-                      ease: "linear"
-                    }}
-                  >
-                    <Apple className="h-8 w-8 text-red-500" />
-                  </motion.div>
+                  <Apple className="h-8 w-8 text-destructive" />
+                </motion.div>
+
+                <motion.div
+                  className="absolute top-1/2 -left-8 bg-card p-3 rounded-full shadow-xl border border-border"
+                  initial={{ scale: 0 }}
+                  animate={{ 
+                    scale: [1, 1.1, 1],
+                    x: [0, -5, 0, 5, 0],
+                  }}
+                  transition={{ 
+                    repeat: Infinity, 
+                    duration: 5,
+                    ease: "easeInOut",
+                    delay: 1
+                  }}
+                >
+                  <Carrot className="h-6 w-6 text-primary" />
                 </motion.div>
               </div>
             </motion.div>
           </div>
         </div>
 
+        {/* Bottom Gradient */}
         <motion.div
-          className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background to-transparent"
+          className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background to-transparent"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 1 }}
