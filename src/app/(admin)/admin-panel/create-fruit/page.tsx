@@ -29,21 +29,23 @@ function CreateFruitPage() {
   const [newMineralValue, setNewMineralValue] = useState("");
   const router = useRouter();
 
-  const form = useForm<z.infer<typeof createFruitSchema>>({
-    resolver: zodResolver(createFruitSchema),
-    defaultValues: {
-      name: "",
-      category: "fruit",
-      description: "",
-      calories: "",
-      vitamins: [],
-      minerals: {},
-      healthBenefits: [],
-      seasonalAvailability: "",
-      isOrganic: false,
-      originStory: "",
-    },
-  });
+  const form = useForm<CreateFruitFormValues>({
+  resolver: zodResolver(createFruitSchema),
+  defaultValues: {
+    name: "",
+    category: "fruit",
+    description: "",
+    calories: "",
+    vitamins: [], // ✅ must be defined
+    minerals: {}, // ✅ must be defined
+    healthBenefits: [], // ✅ must be defined
+    seasonalAvailability: "",
+    isOrganic: false, // ✅ must be defined
+    originStory: "",
+  },
+});
+ 
+
   
 
   // Add vitamin to the form
@@ -142,7 +144,7 @@ function CreateFruitPage() {
       setCreatedFruitId(response.data.fruit._id);
       
       // Don't reset form if we want to upload an image
-      // form.reset();
+      form.reset();
     } catch (error) {
       console.error("Error creating fruit:", error);
       const axiosError = error as any;
