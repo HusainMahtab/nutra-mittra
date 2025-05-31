@@ -41,6 +41,7 @@ const form = useForm<CreateFruitFormValues>({
     vitamins: [], // ✅ empty array to avoid `undefined`
     healthBenefits: [], // ✅ same here
     minerals: {}, // ✅ empty object
+    originStory: "",
   },
 });
 

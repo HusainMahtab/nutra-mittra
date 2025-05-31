@@ -57,7 +57,7 @@ export default function EditFruitPage() {
 
   // Initialize form with explicit type parameter
   const form = useForm<CreateFruitFormValues>({
-    resolver: zodResolver(createFruitSchema),
+    resolver: zodResolver(createFruitSchema) as any,
     defaultValues: {
       name: "",
       category: "fruit",
