@@ -10,6 +10,7 @@ import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Card, CardContent } from '@/components/ui/card';
 import { ExpandableText } from '@/components/ExpandableText';
+import { useParams } from 'next/navigation';
 
 interface Fruit {
   _id: string;
@@ -26,12 +27,13 @@ interface Fruit {
   imageUrl?: string;
 }
 
-export default function FruitDetailsPage({ params }: { params: { id: string } }) {
+export default function FruitDetailsPage() {
   const [fruit, setFruit] = useState<Fruit | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
-  console.log("image", fruit?.imageUrl)
+  const params = useParams();
+ // console.log("image", fruit?.imageUrl)
   
   // Use params directly
   const fruitId = params.id;
