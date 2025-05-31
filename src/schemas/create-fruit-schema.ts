@@ -1,24 +1,18 @@
+// @/schemas/create-fruit-schema.ts
+
 import { z } from "zod";
 
 export const createFruitSchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  category: z.enum(["fruit", "vegetable"], {
-    errorMap: () => ({ message: "Please select a valid category" }),
-  }),
+  name: z.string().min(1),
+  category: z.enum(["fruit", "vegetable"]),
   description: z.string().optional(),
-  calories: z.string().optional(),
-  vitamins: z.array(z.string()).optional().default([]),
-  minerals: z.record(z.string(), z.number()).refine(
-    (minerals) => Object.keys(minerals).length > 0,
-    {
-      message: "At least one mineral is required",
-    }
-  ),
-  healthBenefits: z.array(z.string()).optional().default([]),
+  calories: z.string(), // or z.number().optional() depending on your handling
+  vitamins: z.array(z.string()).default([]),  // 🔥 Ensures it's never undefined
+  minerals: z.record(z.string(), z.number()).default({}),  // 🔥 Same here
+  healthBenefits: z.array(z.string()).default([]),  // 🔥 Ensures it's always an array
   seasonalAvailability: z.string().optional(),
-  isOrganic: z.boolean().default(false),
+  isOrganic: z.boolean(),
   originStory: z.string().optional(),
 });
 
 export type CreateFruitFormValues = z.infer<typeof createFruitSchema>;
-

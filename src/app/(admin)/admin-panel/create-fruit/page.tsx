@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
-import { createFruitSchema, CreateFruitFormValues } from '@/schemas/create-fruit-schema';
 import { toast } from '@/components/ui/use-toast';
 import {z} from "zod";
 
@@ -13,6 +12,7 @@ import {z} from "zod";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { createFruitSchema, CreateFruitFormValues } from '@/schemas/create-fruit-schema';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import FruitImageUpload from '@/components/FruitImageUpload';
