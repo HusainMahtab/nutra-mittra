@@ -16,6 +16,12 @@ export const metadata: Metadata = {
   title: "Nutraमित्रा",
   description:
     "Discover the nutritional minerals in every fruit and vegetable — अपनी सेहत का ख्याल रखें Nutraमित्रा के साथ।",
+  icons: [
+    {
+      rel: "icon",
+      url: "/favicon.png",
+    },
+  ],  
 };
 
 export default function RootLayout({
