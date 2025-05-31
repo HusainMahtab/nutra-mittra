@@ -6,6 +6,7 @@ import Navbar from "@/components/navbar/Navbar";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/ThemeProviders";
 import Footer from "@/components/footer/Footer";
+import {Suspense} from "react";
 export default function ClientLayout({
   children,
 }: {
@@ -21,7 +22,9 @@ export default function ClientLayout({
            disableTransitionOnChange
       >
         <Navbar />
-        {children}
+        <Suspense fallback={<div>Loading...</div>}>
+          {children}
+        </Suspense>
         <Footer/>
       </ThemeProvider>
       
