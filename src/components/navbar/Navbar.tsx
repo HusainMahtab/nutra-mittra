@@ -1,13 +1,11 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname} from "next/navigation";
 import Image from "next/image";
-import { Menu, User, LogOut, Search } from "lucide-react";
+import { Menu, User, LogOut,} from "lucide-react";
 import logo from "../../../public/logo.png";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { signOut } from "next-auth/react";
 import ThemeToggle from "../theme/ThemeToggle";
 import {
@@ -37,10 +35,9 @@ const navLinks = [
 
 export default function Navbar() {
   const pathname = usePathname();
-  const router = useRouter();
   const session = useSession();
   const user = session.data?.user;
-  const [searchTerm, setSearchTerm] = useState("");
+  console.log("User session:", user);
 
   const handleLogout = () => {
     signOut({ callbackUrl: "/" });
@@ -51,12 +48,12 @@ export default function Navbar() {
       <div className="container flex h-16 items-center justify-between">
         {/* Logo on the left */}
         <Link href="/" className="flex items-center">
-          <div className="relative h-32 w-32">
+          <div className="relative ">
             <Image
               src={logo}
               alt="Nutra Mitra Logo"
               fill
-              className="object-contain mix-blend-multiply"
+              className="object-contain mix-blend-multiply w-20 h-20"
               priority
             />
           </div>

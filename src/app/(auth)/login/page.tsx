@@ -112,6 +112,8 @@ export default function LoginPage() {
         redirect: false,
       });
 
+      //console.log("Login result:", result);
+
       if (result?.error) {
         throw new Error(result.error);
       }

@@ -434,7 +434,7 @@ export default function AboutPage() {
               <Button onClick={()=>router.push('/fruits')} size="lg" className="bg-background text-primary hover:bg-background/90">
                 Explore Our Collection
               </Button>
-              <Button size="lg" variant="outline" className="border-background text-background hover:bg-primary-foreground/10">
+              <Button size="lg" onClick={()=>router.push('/contact')} variant="outline" className="border-background text-background hover:bg-primary-foreground/10">
                 Contact Us
               </Button>
             </div>
