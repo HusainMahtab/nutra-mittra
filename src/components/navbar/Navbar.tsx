@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname} from "next/navigation";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { Menu, User, LogOut,} from "lucide-react";
+import { Menu, User, LogOut } from "lucide-react";
 import logo from "../../../public/logo.png";
 import { Button } from "@/components/ui/button";
 import { signOut } from "next-auth/react";
@@ -47,17 +47,15 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-2">
       <div className="container flex h-16 items-center justify-between">
         {/* Logo on the left */}
-        <Link href="/" className="flex items-center">
-          <div className="relative ">
+        <div className="relative w-30 h-30 flex-shrink-0 ml-4 cursor-pointer">
             <Image
               src={logo}
               alt="Nutra Mitra Logo"
               fill
-              className="object-contain mix-blend-multiply w-20 h-20"
+              className="mix-blend-multiply"
               priority
             />
-          </div>
-        </Link>
+        </div>
 
         {/* Navigation Links in the center */}
         <nav className="hidden md:flex items-center gap-6 mx-auto">
@@ -79,7 +77,6 @@ export default function Navbar() {
         {/* Right side elements (Theme toggle and profile) */}
         <div className="flex items-center gap-4">
           {/* Search Bar - Only show on fruits or vegetables pages */}
-        
 
           <ThemeToggle />
 
@@ -156,7 +153,7 @@ export default function Navbar() {
                     </div>
                     <span className="font-bold">Nutra Mitra</span>
                   </Link>
-                  
+
                   <nav className="flex flex-col gap-4">
                     {navLinks.map((link) => (
                       <SheetClose asChild key={link.href}>
