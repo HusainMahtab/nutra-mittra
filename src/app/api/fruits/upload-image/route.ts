@@ -83,7 +83,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           message: "Image uploaded successfully",
-          imageUrl: result.secure_url,
+          image: result.secure_url,
           publicId: result.public_id,
         },
         { status: 200 }

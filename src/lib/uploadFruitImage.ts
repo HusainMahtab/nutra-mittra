@@ -55,7 +55,7 @@ export async function uploadFruitImage(file: File, fruitId: string) {
 
     // Step 2: Update the fruit record with the image URL
     console.log("Starting database update for fruit:", fruitId);
-    console.log("Image URL to save:", uploadResult.imageUrl);
+    console.log("Image URL to save:", uploadResult.image);
     
     const updateResponse = await fetch("/api/fruits/update-image", {
       method: "PUT",
@@ -64,7 +64,7 @@ export async function uploadFruitImage(file: File, fruitId: string) {
       },
       body: JSON.stringify({
         fruitId,
-        image: uploadResult.imageUrl,
+        image: uploadResult.image,
       }),
     });
 
@@ -104,7 +104,7 @@ export async function uploadFruitImage(file: File, fruitId: string) {
     return {
       success: true,
       data: {
-        image: uploadResult.imageUrl,
+        image: uploadResult.image,
         fruit: updateResult.fruit,
       },
     };
