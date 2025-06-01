@@ -16,7 +16,7 @@ interface Fruit {
   seasonalAvailability?: string;
   isOrganic: boolean;
   originStory?: string;
-  imageUrl?: string;
+  image?: string;
 }
 
 interface FruitCardProps {
@@ -31,7 +31,7 @@ export default function FruitCard({ fruit }: FruitCardProps) {
   const vitaminsToShow = fruit.vitamins.slice(0, 2);
   
   // Default image if none provided
-  const imageUrl = fruit.imageUrl ?? '/placeholder-fruit.jpg';
+  const imageUrl = fruit.image ?? '/placeholder-fruit.jpg';
   
   return (
     <Card 

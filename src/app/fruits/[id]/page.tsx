@@ -25,7 +25,7 @@ interface Fruit {
   seasonalAvailability?: string;
   isOrganic: boolean;
   originStory?: string;
-  imageUrl?: string;
+  image?: string;
 }
 
 export default function FruitDetailsPage() {
@@ -34,7 +34,7 @@ export default function FruitDetailsPage() {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
   const params = useParams();
- // console.log("image", fruit?.imageUrl)
+ // console.log("image", fruit?.image)
   
   // Use params directly
   const fruitId = params.id;
@@ -104,7 +104,7 @@ export default function FruitDetailsPage() {
   }
 
   // Default image if none provided
-  const imageUrl = fruit?.imageUrl ?? "/placeholder-fruit.jpg"; // Make sure this fallback image exists in your public/images folder
+  const imageUrl = fruit?.image ?? "/placeholder-fruit.jpg"; // Make sure this fallback image exists in your public/images folder
 
   return (
     <div className="container mx-auto py-8 px-4">

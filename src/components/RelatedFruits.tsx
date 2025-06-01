@@ -21,7 +21,7 @@ interface Fruit {
   seasonalAvailability?: string;
   isOrganic: boolean;
   originStory?: string;
-  imageUrl?: string;
+  image?: string;
 }
 
 interface RelatedFruitsProps {
@@ -162,7 +162,7 @@ export default function RelatedFruits({ currentFruit, maxItems = 4 }: RelatedFru
                 <CardContent className="p-0">
                   <div className="relative aspect-square overflow-hidden rounded-t-lg">
                     <Image
-                      src={fruit.imageUrl || "/placeholder-fruit.jpg"}
+                      src={fruit.image || "/placeholder-fruit.jpg"}
                       alt={fruit.name}
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"

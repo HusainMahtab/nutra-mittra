@@ -54,6 +54,9 @@ export async function uploadFruitImage(file: File, fruitId: string) {
     }
 
     // Step 2: Update the fruit record with the image URL
+    console.log("Starting database update for fruit:", fruitId);
+    console.log("Image URL to save:", uploadResult.imageUrl);
+    
     const updateResponse = await fetch("/api/fruits/update-image", {
       method: "PUT",
       headers: {
@@ -65,12 +68,38 @@ export async function uploadFruitImage(file: File, fruitId: string) {
       }),
     });
 
+    console.log("Update response status:", updateResponse.status);
+    console.log("Update response headers:", Object.fromEntries(updateResponse.headers.entries()));
+
     if (!updateResponse.ok) {
-      const errorData = await updateResponse.json();
-      throw new Error(errorData.error || "Failed to update fruit with image URL");
+      let errorMessage = `HTTP ${updateResponse.status}: ${updateResponse.statusText}`;
+      
+      try {
+        const errorData = await updateResponse.json();
+        console.error("Update error data:", errorData);
+        errorMessage = errorData.error || errorMessage;
+      } catch (jsonError) {
+        console.error("Failed to parse update error response as JSON:", jsonError);
+        try {
+          const errorText = await updateResponse.text();
+          console.error("Update error response text:", errorText);
+          errorMessage = errorText || errorMessage;
+        } catch (textError) {
+          console.error("Failed to get update error response text:", textError);
+        }
+      }
+      
+      throw new Error(errorMessage);
     }
 
-    const updateResult = await updateResponse.json();
+    let updateResult;
+    try {
+      updateResult = await updateResponse.json();
+      console.log("Update result:", updateResult);
+    } catch (jsonError) {
+      console.error("Failed to parse update response as JSON:", jsonError);
+      throw new Error("Invalid response from update API");
+    }
 
     return {
       success: true,

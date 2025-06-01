@@ -29,7 +29,7 @@ interface Vegetable {
   seasonalAvailability?: string;
   isOrganic: boolean;
   originStory?: string;
-  imageUrl?: string;
+  image?: string;
 }
 
 export default function VegetablesPage() {
@@ -226,9 +226,9 @@ export default function VegetablesPage() {
                   <motion.div key={vegetable._id} variants={itemVariants}>
                     <Card className="h-full hover:shadow-lg transition-shadow overflow-hidden">
                       <div className="relative h-48 bg-muted">
-                        {vegetable.imageUrl ? (
+                        {vegetable.image ? (
                           <Image
-                            src={vegetable.imageUrl}
+                            src={vegetable.image}
                             alt={vegetable.name}
                             fill
                             className="object-cover"

@@ -28,11 +28,16 @@ export async function PUT(request: Request) {
     }
     
     // Update fruit with image URL
+    console.log("Updating fruit with ID:", body.fruitId);
+    console.log("Setting image to:", body.imageUrl);
+    
     const updatedFruit = await Fruit.findByIdAndUpdate(
       body.fruitId,
-      { imageUrl: body.imageUrl },
+      { image: body.imageUrl },
       { new: true }
     );
+    
+    console.log("Updated fruit:", updatedFruit);
     
     if (!updatedFruit) {
       return NextResponse.json(
