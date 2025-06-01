@@ -36,8 +36,7 @@ const navLinks = [
 export default function Navbar() {
   const pathname = usePathname();
   const session = useSession();
-  const user = session.data?.user;
-  console.log("User session:", user);
+  const user=session.data?.user
 
   const handleLogout = () => {
     signOut({ callbackUrl: "/" });
