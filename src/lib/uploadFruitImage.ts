@@ -61,7 +61,7 @@ export async function uploadFruitImage(file: File, fruitId: string) {
       },
       body: JSON.stringify({
         fruitId,
-        imageUrl: uploadResult.imageUrl,
+        image: uploadResult.imageUrl,
       }),
     });
 
@@ -75,7 +75,7 @@ export async function uploadFruitImage(file: File, fruitId: string) {
     return {
       success: true,
       data: {
-        imageUrl: uploadResult.imageUrl,
+        image: uploadResult.imageUrl,
         fruit: updateResult.fruit,
       },
     };

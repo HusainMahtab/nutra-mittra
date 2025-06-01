@@ -37,7 +37,7 @@ export default function FruitImageUpload({
       const result = await uploadFruitImage(file, fruitId);
       
       if (result.success && result.data) {
-        onUploadSuccess?.(result.data.imageUrl);
+        onUploadSuccess?.(result.data.image);
       } else {
         onUploadError?.(result.error || "Upload failed");
       }
