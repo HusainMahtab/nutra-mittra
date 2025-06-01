@@ -23,7 +23,7 @@ const fruitSchema: Schema<IFruit> = new Schema(
     name: { type: String, required: true, unique: true },
     category: { type: String, enum: ["fruit", "vegetable"], required: true },
     description: { type: String },
-    image: { type: String }, // image URL
+    image: { type: String }, 
     calories: { type: Number },
     vitamins: [{ type: String }],
     minerals: { type: Map, of: Number, required: true },

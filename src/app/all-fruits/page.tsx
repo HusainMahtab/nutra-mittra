@@ -29,7 +29,7 @@ interface Fruit {
   seasonalAvailability?: string;
   isOrganic: boolean;
   originStory?: string;
-  imageUrl?: string;
+  image?: string;
 }
 
 export default function AllFruitsPage() {
@@ -226,9 +226,9 @@ export default function AllFruitsPage() {
                   <motion.div key={fruit._id} variants={itemVariants}>
                     <Card className="h-full hover:shadow-lg transition-shadow overflow-hidden">
                       <div className="relative h-48 bg-muted">
-                        {fruit.imageUrl ? (
+                        {fruit.image ? (
                           <Image
-                            src={fruit.imageUrl}
+                            src={fruit.image}
                             alt={fruit.name}
                             fill
                             className="object-cover"

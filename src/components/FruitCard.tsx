@@ -31,8 +31,8 @@ export default function FruitCard({ fruit }: FruitCardProps) {
   const vitaminsToShow = fruit.vitamins.slice(0, 2);
   
   // Default image if none provided
-  const imageUrl = fruit.image ?? '/placeholder-fruit.jpg';
-  
+  const image = fruit.image ?? '/placeholder-fruit.jpg';
+
   return (
     <Card 
       className="overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer h-full flex flex-col"
@@ -40,7 +40,7 @@ export default function FruitCard({ fruit }: FruitCardProps) {
     >
       <div className="relative h-48 w-full">
         <Image
-          src={imageUrl}
+          src={image}
           alt={fruit.name}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

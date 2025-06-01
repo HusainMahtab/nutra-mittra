@@ -33,7 +33,7 @@ interface Fruit {
   seasonalAvailability?: string;
   isOrganic: boolean;
   originStory?: string;
-  imageUrl?: string;
+  image?: string;
 }
 
 export default function Home() {
@@ -489,7 +489,7 @@ export default function Home() {
                       <Card className="overflow-hidden h-full hover:shadow-lg transition-shadow duration-300">
                         <div className="relative h-48 w-full">
                           <Image
-                            src={fruit.imageUrl || "/placeholder-fruit.jpg"}
+                            src={fruit.image || "/placeholder-fruit.jpg"}
                             alt={fruit.name}
                             fill
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

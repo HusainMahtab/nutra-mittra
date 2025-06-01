@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import dbConnection from '@/lib/db';
-import Fruit from '@/models/Fruit';
+import Fruit from "@/models/fruit.model"
 
 export async function GET() {
   try {
