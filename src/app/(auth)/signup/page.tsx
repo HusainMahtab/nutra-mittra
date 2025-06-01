@@ -274,7 +274,7 @@ export default function SignupPage() {
   };
   
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-primary/20 flex items-center justify-center p-4">
       <motion.div
         className="w-full max-w-md"
         variants={containerVariants}

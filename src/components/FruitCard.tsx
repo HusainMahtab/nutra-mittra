@@ -87,7 +87,7 @@ export default function FruitCard({ fruit }: FruitCardProps) {
         ))}
         
         {vitaminsToShow.map((vitamin, index) => (
-          <Badge key={`vitamin-${index}`} variant="outline" className="mr-1 mb-1">
+          <Badge key={`vitamin-${index}`} variant="outline" className="bg-primary/10 text-primary mr-1 mb-1">
             {vitamin}
           </Badge>
         ))}

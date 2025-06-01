@@ -496,7 +496,7 @@ export default function Home() {
                             className="object-cover"
                           />
                           {fruit.isOrganic && (
-                            <Badge className="absolute top-2 right-2 bg-green-600">
+                            <Badge className="absolute top-2 right-2 bg-primary text-primary-foreground">
                               <Leaf className="mr-1 h-3 w-3" /> Organic
                             </Badge>
                           )}
@@ -530,7 +530,7 @@ export default function Home() {
                                 <Badge
                                   key={index}
                                   variant="secondary"
-                                  className="bg-blue-50 text-blue-700 border-blue-100"
+                                  className="bg-primary/10 text-primary border-primary/50"
                                 >
                                   {vitamin}
                                 </Badge>
