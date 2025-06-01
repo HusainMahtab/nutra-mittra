@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
-import { toast } from '@/components/ui/use-toast';
+import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -72,17 +72,10 @@ export default function AllFruitsPage() {
       // Update the local state to remove the deleted fruit
       setFruits(fruits.filter(fruit => fruit._id !== id));
       
-      toast({
-        title: "Success",
-        description: "Fruit deleted successfully",
-      });
+      toast.success("Fruit deleted successfully");
     } catch (err) {
       console.error('Error deleting fruit:', err);
-      toast({
-        title: "Error",
-        description: "Failed to delete fruit",
-        variant: "destructive",
-      });
+      toast.error("Failed to delete fruit");
     } finally {
       setDeletingId(null);
     }

@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 import { createFruitSchema, CreateFruitFormValues } from '@/schemas/create-fruit-schema';
-import { toast } from '@/components/ui/use-toast';
+import { toast } from 'sonner';
 
 // UI Components
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
@@ -176,19 +176,12 @@ export default function EditFruitPage() {
   // Handle image upload success
   const handleImageUploadSuccess = (url: string): void => {
     setImageUrl(url);
-    toast({
-      title: "Success",
-      description: "Image uploaded successfully",
-    });
+    toast.success("Image uploaded successfully");
   };
 
   // Handle image upload error
   const handleImageUploadError = (errorMessage: string): void => {
-    toast({
-      title: "Error",
-      description: `Failed to upload image: ${errorMessage}`,
-      variant: "destructive",
-    });
+    toast.error(`Failed to upload image: ${errorMessage}`);
   };
 
   // Form submission handler
@@ -196,22 +189,14 @@ export default function EditFruitPage() {
     setIsSubmitting(true);
     try {
       const response = await axios.put(`/api/fruits/${fruitId}`, data);
-      
-      toast({
-        title: "Success",
-        description: "Fruit updated successfully"
-      });
-      
+      toast.success("Fruit updated successfully");
+
       // Redirect back to the all fruits page
       router.push('/admin-panel/all');
     } catch (error) {
       console.error("Error updating fruit:", error);
       const axiosError = error as any;
-      toast({
-        title: "Error",
-        description: axiosError.response?.data?.error || "Failed to update fruit",
-        variant: "destructive"
-      });
+      toast.error(axiosError.response?.data?.error || "Failed to update fruit");
     } finally {
       setIsSubmitting(false);
     }

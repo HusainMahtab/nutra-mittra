@@ -6,7 +6,7 @@ import Navbar from "@/components/navbar/Navbar";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/ThemeProviders";
 import Footer from "@/components/footer/Footer";
-import { ToastProvider } from "@/components/ui/use-toast";
+import { Toaster } from "@/components/ui/sonner";
 import {Suspense} from "react";
 
 export default function ClientLayout({
@@ -23,13 +23,12 @@ export default function ClientLayout({
            enableSystem
            disableTransitionOnChange
       >
-        <ToastProvider>
-          <Navbar />
-          <Suspense fallback={<div>Loading...</div>}>
-            {children}
-          </Suspense>
-          <Footer/>
-        </ToastProvider>
+        <Navbar />
+        <Suspense fallback={<div>Loading...</div>}>
+          {children}
+        </Suspense>
+        <Footer/>
+        <Toaster />
       </ThemeProvider>
       
     </SessionProvider>

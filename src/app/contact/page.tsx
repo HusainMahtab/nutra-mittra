@@ -20,7 +20,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useToast } from "@/components/ui/use-toast";
+import { toast } from "sonner";
 
 // Form validation schema
 const contactSchema = z.object({
@@ -63,8 +63,6 @@ const scaleIn = {
 
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
-
   const {
     register,
     handleSubmit,
@@ -86,20 +84,15 @@ export default function ContactPage() {
       });
 
       if (response.ok) {
-        toast({
-          title: "Message sent successfully!",
-          description: "We'll get back to you as soon as possible.",
-        });
+        toast.success("Message sent successfully!");
         reset();
       } else {
         throw new Error("Failed to send message");
       }
     } catch (error) {
-      toast({
-        title: "Error sending message",
-        description: "Please try again later or contact us directly.",
-        variant: "destructive",
-      });
+      toast.error(
+        error instanceof Error ? error.message : "An unexpected error occurred"
+      );
     } finally {
       setIsSubmitting(false);
     }
