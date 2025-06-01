@@ -11,6 +11,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Card, CardContent } from '@/components/ui/card';
 import { ExpandableText } from '@/components/ExpandableText';
 import { useParams } from 'next/navigation';
+import RelatedFruits from '@/components/RelatedFruits';
 
 interface Fruit {
   _id: string;
@@ -234,6 +235,9 @@ export default function FruitDetailsPage() {
           )}
         </div>
       </div>
+
+      {/* Related Fruits Section */}
+      <RelatedFruits currentFruit={fruit} maxItems={4} />
     </div>
   );
 }

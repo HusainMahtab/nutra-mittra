@@ -46,7 +46,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-2">
       <div className="container flex h-16 items-center justify-between">
         {/* Logo on the left */}
-        <div className="relative w-30 h-30 flex-shrink-0 ml-4 cursor-pointer">
+        <Link href={"/"} className="relative w-30 h-30 flex-shrink-0 ml-4 cursor-pointer">
             <Image
               src={logo}
               alt="Nutra Mitra Logo"
@@ -54,7 +54,7 @@ export default function Navbar() {
               className="mix-blend-multiply"
               priority
             />
-        </div>
+        </Link>
 
         {/* Navigation Links in the center */}
         <nav className="hidden md:flex items-center gap-6 mx-auto">

@@ -132,7 +132,7 @@ export default function VegetablesPage() {
   };
 
   const handleViewDetails = (vegetableId: string) => {
-    router.push(`/vegetable/${vegetableId}`);
+    router.push(`/fruits/${vegetableId}`);
   };
 
   return (

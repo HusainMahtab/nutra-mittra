@@ -5,9 +5,11 @@ import mongoose from "mongoose";
 
 export async function PUT(request: Request) {
   try {
+    console.log("Update image API called");
     await dbConnection();
     
     const body = await request.json();
+    console.log("Update image request body:", body);
     
     // Validate required fields
     if (!body.fruitId || !body.imageUrl) {

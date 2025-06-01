@@ -1,0 +1,15 @@
+{
+  "functions": {
+    "src/app/api/fruits/upload-image/route.ts": {
+      "maxDuration": 30
+    },
+    "src/app/api/fruits/update-image/route.ts": {
+      "maxDuration": 10
+    }
+  },
+  "env": {
+    "CLOUDINARY_CLOUD_NAME": "ddnma8zgs",
+    "CLOUDINARY_API_KEY": "855157572431229",
+    "CLOUDINARY_API_SECRET": "uJIfSEzragIHYHfkJVmyQXhpkIE"
+  }
+}
