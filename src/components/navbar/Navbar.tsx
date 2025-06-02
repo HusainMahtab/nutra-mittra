@@ -29,7 +29,7 @@ const navLinks = [
   { name: "About", href: "/about" },
   { name: "Fruits", href: "/all-fruits" },
   { name: "Vegetables", href: "/vegetables" },
-  { name: "Nutrition", href: "/nutrition" },
+  { name: "Health & Diseases", href: "/health-diseases" },
   { name: "Contact", href: "/contact" },
 ];
 
