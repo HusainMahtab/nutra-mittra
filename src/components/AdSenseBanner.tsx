@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from 'react';
-import { ADSENSE_CONFIG } from '@/lib/adsense-config';
 
 interface AdSenseBannerProps {
   adSlot: string;
@@ -33,10 +32,15 @@ const AdSenseBanner: React.FC<AdSenseBannerProps> = ({
   }, []);
 
   return (
-    <div className={className}>
+    <div className={`w-full max-w-full overflow-hidden ${className}`}>
       <ins
         className="adsbygoogle"
-        style={style}
+        style={{ 
+          display: 'block',
+          width: '100%',
+          maxWidth: '100%',
+          ...style 
+        }}
         data-ad-client="ca-pub-6374749885061449"
         data-ad-slot={adSlot}
         data-ad-format={adFormat}

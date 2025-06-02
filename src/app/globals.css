@@ -172,3 +172,25 @@
   -webkit-line-clamp: 3;
 }
 
+/* AdSense responsive fixes */
+.adsbygoogle {
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+
+/* Ensure ads don't break mobile layout */
+@media (max-width: 768px) {
+  .adsbygoogle {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 150px !important;
+  }
+}
+
+/* Ensure ads don't break desktop layout */
+@media (min-width: 769px) {
+  .adsbygoogle {
+    max-width: 100% !important;
+  }
+}
+

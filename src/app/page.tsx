@@ -362,14 +362,14 @@ export default function Home() {
       </motion.section>
 
       {/* AdSense Banner - Top */}
-      <section className="py-8 bg-background">
+      <section className="py-4 md:py-8 bg-background">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto">
             <AdSenseBanner 
               adSlot="1234567890" 
               adFormat="auto"
-              style={{ display: 'block', minHeight: '250px' }}
-              className="mb-4"
+              style={{ minHeight: '200px' }}
+              className="w-full"
             />
           </div>
         </div>
@@ -585,14 +585,14 @@ export default function Home() {
       </section>
 
       {/* AdSense Banner - Middle */}
-      <section className="py-8 bg-card">
+      <section className="py-4 md:py-8 bg-card">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto">
             <AdSenseBanner 
               adSlot="0987654321" 
               adFormat="auto"
-              style={{ display: 'block', minHeight: '250px' }}
-              className="mb-4"
+              style={{ minHeight: '200px' }}
+              className="w-full"
             />
           </div>
         </div>

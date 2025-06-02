@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 
-interface AdSenseSidebarProps {
+interface AdSenseMobileProps {
   adSlot: string;
   className?: string;
 }
@@ -13,7 +13,7 @@ declare global {
   }
 }
 
-const AdSenseSidebar: React.FC<AdSenseSidebarProps> = ({
+const AdSenseMobile: React.FC<AdSenseMobileProps> = ({
   adSlot,
   className = ""
 }) => {
@@ -26,14 +26,14 @@ const AdSenseSidebar: React.FC<AdSenseSidebarProps> = ({
   }, []);
 
   return (
-    <div className={`sticky top-4 w-full max-w-[300px] ${className}`}>
+    <div className={`block lg:hidden w-full ${className}`}>
       <ins
         className="adsbygoogle"
         style={{ 
-          display: 'block', 
-          width: '100%', 
-          maxWidth: '300px',
-          minHeight: '250px'
+          display: 'block',
+          width: '100%',
+          maxWidth: '100%',
+          minHeight: '150px'
         }}
         data-ad-client="ca-pub-6374749885061449"
         data-ad-slot={adSlot}
@@ -44,4 +44,4 @@ const AdSenseSidebar: React.FC<AdSenseSidebarProps> = ({
   );
 };
 
-export default AdSenseSidebar;
+export default AdSenseMobile;

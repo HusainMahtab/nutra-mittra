@@ -14,6 +14,7 @@ import { useParams } from 'next/navigation';
 import RelatedFruits from '@/components/RelatedFruits';
 import AdSenseBanner from '@/components/AdSenseBanner';
 import AdSenseSidebar from '@/components/AdSenseSidebar';
+import AdSenseMobile from '@/components/AdSenseMobile';
 
 interface Fruit {
   _id: string;
@@ -119,7 +120,7 @@ export default function FruitDetailsPage() {
         Back
       </Button>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-8">
         {/* Left column - Image */}
         <div className="lg:col-span-1">
           <div className="relative aspect-square w-full rounded-lg overflow-hidden shadow-md">
@@ -142,6 +143,14 @@ export default function FruitDetailsPage() {
               </Badge>
             )}
           </div>
+        </div>
+
+        {/* Mobile Ad - Shows only on mobile */}
+        <div className="lg:hidden col-span-1">
+          <AdSenseMobile 
+            adSlot="4444444444"
+            className="mb-4"
+          />
         </div>
 
         {/* Middle column - Details */}
@@ -247,12 +256,12 @@ export default function FruitDetailsPage() {
       </div>
 
       {/* AdSense Banner - Before Related Fruits */}
-      <div className="my-8">
+      <div className="my-4 md:my-8">
         <AdSenseBanner 
           adSlot="5544332211" 
           adFormat="auto"
-          style={{ display: 'block', minHeight: '250px' }}
-          className="mb-4"
+          style={{ minHeight: '200px' }}
+          className="w-full"
         />
       </div>
 
