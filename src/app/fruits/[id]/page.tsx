@@ -188,7 +188,7 @@ export default function FruitDetailsPage() {
             {/* Vitamins */}
             {fruit.vitamins.length > 0 && (
               <div className="mb-4">
-                <h3 className="font-medium text-gray-600 mb-2">Vitamins</h3>
+                <h3 className="font-medium text-gray-600 mb-2">Vitamins/100g</h3>
                 <div className="flex flex-wrap gap-2">
                   {fruit.vitamins.map((vitamin, index) => (
                     <Badge key={index} variant="secondary">
@@ -202,7 +202,7 @@ export default function FruitDetailsPage() {
             {/* Minerals */}
             {Object.keys(fruit.minerals).length > 0 && (
               <div>
-                <h3 className="font-medium text-gray-600 mb-2">Minerals</h3>
+                <h3 className="font-medium text-gray-600 mb-2">Minerals/100g</h3>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                   {Object.entries(fruit.minerals).map(([name, value], index) => (
                     <div key={index} className=" bg-accent p-2 rounded-md">
