@@ -252,7 +252,7 @@ export default function Home() {
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             >
-              <div className="relative w-[500px] h-[500px]">
+              <div className="relative md:w-[500px] md:h-[500px] w-[330px] h-[330px]">
                 {/* Background Glow using your defined colors */}
                 <div className="absolute top-0 left-0 w-full h-full bg-primary/20 rounded-full opacity-60 animate-pulse"></div>
 
