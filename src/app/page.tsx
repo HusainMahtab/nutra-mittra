@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import AdSenseBanner from "@/components/AdSenseBanner";
 import banner1 from "../../public/banner1.png";
 import banner2 from "../../public/banner2.png";
 import banner3 from "../../public/banner3.png";
@@ -360,6 +361,20 @@ export default function Home() {
         />
       </motion.section>
 
+      {/* AdSense Banner - Top */}
+      <section className="py-8 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <AdSenseBanner 
+              adSlot="1234567890" 
+              adFormat="auto"
+              style={{ display: 'block', minHeight: '250px' }}
+              className="mb-4"
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Filter Section */}
       <section id="collection-section" className="py-12 bg-card">
         <div className="container mx-auto px-4">
@@ -566,6 +581,20 @@ export default function Home() {
               </AnimatePresence>
             </motion.div>
           )}
+        </div>
+      </section>
+
+      {/* AdSense Banner - Middle */}
+      <section className="py-8 bg-card">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <AdSenseBanner 
+              adSlot="0987654321" 
+              adFormat="auto"
+              style={{ display: 'block', minHeight: '250px' }}
+              className="mb-4"
+            />
+          </div>
         </div>
       </section>
 

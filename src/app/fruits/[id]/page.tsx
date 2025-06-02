@@ -12,6 +12,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { ExpandableText } from '@/components/ExpandableText';
 import { useParams } from 'next/navigation';
 import RelatedFruits from '@/components/RelatedFruits';
+import AdSenseBanner from '@/components/AdSenseBanner';
+import AdSenseSidebar from '@/components/AdSenseSidebar';
 
 interface Fruit {
   _id: string;
@@ -117,9 +119,9 @@ export default function FruitDetailsPage() {
         Back
       </Button>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
         {/* Left column - Image */}
-        <div className="md:col-span-1">
+        <div className="lg:col-span-1">
           <div className="relative aspect-square w-full rounded-lg overflow-hidden shadow-md">
             <Image
               src={imageUrl}
@@ -142,8 +144,8 @@ export default function FruitDetailsPage() {
           </div>
         </div>
 
-        {/* Right column - Details */}
-        <div className="md:col-span-2">
+        {/* Middle column - Details */}
+        <div className="lg:col-span-2">
           <div className="flex justify-between items-start mb-2">
             <h1 className="text-3xl font-bold">{fruit.name}</h1>
             <Badge variant="outline" className="capitalize text-base px-3 py-1">
@@ -234,6 +236,24 @@ export default function FruitDetailsPage() {
             </div>
           )}
         </div>
+
+        {/* Right sidebar - Ads */}
+        <div className="lg:col-span-1 hidden lg:block">
+          <AdSenseSidebar 
+            adSlot="1122334455"
+            className="mb-8"
+          />
+        </div>
+      </div>
+
+      {/* AdSense Banner - Before Related Fruits */}
+      <div className="my-8">
+        <AdSenseBanner 
+          adSlot="5544332211" 
+          adFormat="auto"
+          style={{ display: 'block', minHeight: '250px' }}
+          className="mb-4"
+        />
       </div>
 
       {/* Related Fruits Section */}
