@@ -10,17 +10,12 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import banner1 from "../../public/banner1.png"
+import banner1 from "../../public/banner1.png";
 import banner2 from "../../public/banner2.png";
 import banner3 from "../../public/banner3.png";
 import banner4 from "../../public/banner4.png";
 // Hero images - replace with your actual image paths
-const heroImages = [
-  banner1,
-  banner2,
-  banner3,
-  banner4
-];
+const heroImages = [banner1, banner2, banner3, banner4];
 interface Fruit {
   _id: string;
   name: string;
@@ -56,9 +51,7 @@ export default function Home() {
   // Auto-rotate hero images
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => 
-        (prevIndex + 1) % heroImages.length
-      );
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % heroImages.length);
     }, 4000); // Change image every 4 seconds
 
     return () => clearInterval(interval);
@@ -190,16 +183,16 @@ export default function Home() {
                 variants={itemVariants}
               >
                 Discover the Power of{" "}
-                <span className="text-primary">
-                  Nature's Nutrition
-                </span>
+                <span className="text-primary">Nature's Nutrition</span>
               </motion.h1>
 
               <motion.p
                 className="text-xl text-muted-foreground max-w-2xl leading-relaxed"
                 variants={itemVariants}
               >
-                Explore our comprehensive collection of fruits and vegetables, discover their incredible nutritional benefits, and make informed choices for a healthier, more vibrant lifestyle.
+                Explore our comprehensive collection of fruits and vegetables,
+                discover their incredible nutritional benefits, and make
+                informed choices for a healthier, more vibrant lifestyle.
               </motion.p>
 
               <motion.div
@@ -227,21 +220,27 @@ export default function Home() {
               </motion.div>
 
               {/* Stats */}
-              <motion.div 
+              <motion.div
                 className="grid grid-cols-3 gap-6 pt-8"
                 variants={itemVariants}
               >
                 <div className="text-center">
                   <div className="text-3xl font-bold text-primary">100+</div>
-                  <div className="text-sm text-muted-foreground">Fruits & Vegetables</div>
+                  <div className="text-sm text-muted-foreground">
+                    Fruits & Vegetables
+                  </div>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-primary">50+</div>
-                  <div className="text-sm text-muted-foreground">Health Benefits</div>
+                  <div className="text-sm text-muted-foreground">
+                    Health Benefits
+                  </div>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-primary">24/7</div>
-                  <div className="text-sm text-muted-foreground">Nutrition Guide</div>
+                  <div className="text-sm text-muted-foreground">
+                    Nutrition Guide
+                  </div>
                 </div>
               </motion.div>
             </motion.div>
@@ -254,9 +253,9 @@ export default function Home() {
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             >
               <div className="relative w-[500px] h-[500px]">
-               {/* Background Glow using your defined colors */}
+                {/* Background Glow using your defined colors */}
                 <div className="absolute top-0 left-0 w-full h-full bg-primary/20 rounded-full opacity-60 animate-pulse"></div>
-                
+
                 {/* Main Image Container */}
                 <div className="relative w-full h-full rounded-full overflow-hidden shadow-2xl border-4 border-card">
                   <AnimatePresence mode="wait">
@@ -268,7 +267,7 @@ export default function Home() {
                       transition={{ duration: 0.5 }}
                       className="w-full h-full"
                     >
-                       <Image
+                      <Image
                         src={heroImages[currentImageIndex]}
                         alt={`Healthy nutrition ${currentImageIndex + 1}`}
                         width={500}
@@ -287,9 +286,9 @@ export default function Home() {
                       key={index}
                       onClick={() => setCurrentImageIndex(index)}
                       className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                        index === currentImageIndex 
-                          ? 'bg-primary scale-125' 
-                          : 'bg-muted hover:bg-primary/60'
+                        index === currentImageIndex
+                          ? "bg-primary scale-125"
+                          : "bg-muted hover:bg-primary/60"
                       }`}
                     />
                   ))}
@@ -299,15 +298,15 @@ export default function Home() {
                 <motion.div
                   className="absolute -top-6 -right-6 bg-card p-4 rounded-full shadow-xl border border-border"
                   initial={{ scale: 0 }}
-                  animate={{ 
+                  animate={{
                     scale: [1, 1.1, 1],
                     rotate: [0, -10, 0, 10, 0],
                     y: [0, -10, 0],
                   }}
-                  transition={{ 
-                    repeat: Infinity, 
+                  transition={{
+                    repeat: Infinity,
                     duration: 4,
-                    ease: "easeInOut"
+                    ease: "easeInOut",
                   }}
                 >
                   <Leaf className="h-8 w-8 text-primary" />
@@ -316,16 +315,16 @@ export default function Home() {
                 <motion.div
                   className="absolute -bottom-6 -left-6 bg-card p-4 rounded-full shadow-xl border border-border"
                   initial={{ scale: 0 }}
-                  animate={{ 
+                  animate={{
                     scale: [1, 1.1, 1],
                     rotate: [0, 10, 0, -10, 0],
                     y: [0, 10, 0],
                   }}
-                  transition={{ 
-                    repeat: Infinity, 
+                  transition={{
+                    repeat: Infinity,
                     duration: 4,
                     ease: "easeInOut",
-                    delay: 0.5
+                    delay: 0.5,
                   }}
                 >
                   <Apple className="h-8 w-8 text-destructive" />
@@ -334,15 +333,15 @@ export default function Home() {
                 <motion.div
                   className="absolute top-1/2 -left-8 bg-card p-3 rounded-full shadow-xl border border-border"
                   initial={{ scale: 0 }}
-                  animate={{ 
+                  animate={{
                     scale: [1, 1.1, 1],
                     x: [0, -5, 0, 5, 0],
                   }}
-                  transition={{ 
-                    repeat: Infinity, 
+                  transition={{
+                    repeat: Infinity,
                     duration: 5,
                     ease: "easeInOut",
-                    delay: 1
+                    delay: 1,
                   }}
                 >
                   <Carrot className="h-6 w-6 text-primary" />
@@ -392,7 +391,6 @@ export default function Home() {
                 />
               </div>
             </motion.div>
-
             <motion.div
               className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between mb-8"
               variants={itemVariants}
@@ -457,7 +455,9 @@ export default function Home() {
             </div>
           ) : filteredFruits.length === 0 ? (
             <div className="text-center py-12">
-              <h3 className="text-xl font-semibold mb-2 text-foreground">No items found</h3>
+              <h3 className="text-xl font-semibold mb-2 text-foreground">
+                No items found
+              </h3>
               <p className="text-muted-foreground">
                 Try adjusting your search or filters
               </p>
@@ -501,7 +501,6 @@ export default function Home() {
                             </Badge>
                           )}
                         </div>
-
                         <CardContent className="p-4">
                           <div className="flex justify-between items-start mb-2">
                             <h3 className="font-bold text-lg">{fruit.name}</h3>
@@ -606,10 +605,7 @@ export default function Home() {
             transition={{ delay: 0.6 }}
             viewport={{ once: true }}
           >
-            <Button
-              size="lg"
-              className="bg-card text-primary hover:bg-card/90"
-            >
+            <Button size="lg" className="bg-card text-primary hover:bg-card/90">
               Learn More About Nutrition
             </Button>
           </motion.div>

@@ -245,7 +245,7 @@ export default function EditFruitPage() {
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit) as React.FormEventHandler} className="space-y-6">
               {/* Basic Information */}
-              <div className="bg-white p-6 rounded-lg shadow-md">
+              <div className="p-6 rounded-lg shadow-md">
                 <h2 className="text-xl font-semibold mb-4">Basic Information</h2>
                 
                 <FormField
@@ -364,7 +364,7 @@ export default function EditFruitPage() {
               </div>
 
               {/* Vitamins Section */}
-              <div className="bg-white p-6 rounded-lg shadow-md">
+              <div className="p-6 rounded-lg shadow-md">
                 <h2 className="text-xl font-semibold mb-4">Vitamins</h2>
                 
                 <div className="flex mb-4">
@@ -386,7 +386,7 @@ export default function EditFruitPage() {
 
                 <div className="space-y-2">
                   {form.watch("vitamins")?.map((vitamin: string, index: number) => (
-                    <div key={index} className="flex items-center justify-between bg-gray-50 p-2 rounded-md">
+                    <div key={index} className="flex items-center justify-between p-2 rounded-md">
                       <span>{vitamin}</span>
                       <Button
                         type="button"
@@ -405,7 +405,7 @@ export default function EditFruitPage() {
               </div>
 
               {/* Origin Story Section */}
-              <div className="bg-white p-6 rounded-lg shadow-md">
+              <div className="p-6 rounded-lg shadow-md">
                 <h2 className="text-xl font-semibold mb-4">Origin Story</h2>
                 
                 <FormField
@@ -441,7 +441,7 @@ export default function EditFruitPage() {
         {/* Right column */}
         <div className="space-y-6">
           {/* Minerals Section */}
-          <div className="bg-white p-6 rounded-lg shadow-md">
+          <div className="p-6 rounded-lg shadow-md">
             <h2 className="text-xl font-semibold mb-4">Minerals</h2>
             
             <div className="flex mb-4">
@@ -474,7 +474,7 @@ export default function EditFruitPage() {
 
             <div className="space-y-2">
               {Object.entries(form.watch("minerals") || {}).map(([name, value]: [string, number], index: number) => (
-                <div key={index} className="flex items-center justify-between bg-gray-50 p-2 rounded-md">
+                <div key={index} className="flex items-center justify-between p-2 rounded-md">
                   <span>
                     <span className="font-medium">{name}:</span> {value} mg
                   </span>
@@ -495,7 +495,7 @@ export default function EditFruitPage() {
           </div>
 
           {/* Health Benefits Section */}
-          <div className="bg-white p-6 rounded-lg shadow-md">
+          <div className="p-6 rounded-lg shadow-md">
             <h2 className="text-xl font-semibold mb-4">Health Benefits</h2>
             
             <div className="flex mb-4">
@@ -517,7 +517,7 @@ export default function EditFruitPage() {
 
             <div className="space-y-2">
               {form.watch("healthBenefits")?.map((benefit: string, index: number) => (
-                <div key={index} className="flex items-center justify-between bg-gray-50 p-2 rounded-md">
+                <div key={index} className="flex items-center justify-between p-2 rounded-md">
                   <span>{benefit}</span>
                   <Button
                     type="button"
@@ -536,7 +536,7 @@ export default function EditFruitPage() {
           </div>
 
           {/* Image Upload Section */}
-          <div className="bg-white p-6 rounded-lg shadow-md">
+          <div className="p-6 rounded-lg shadow-md">
             <h2 className="text-xl font-semibold mb-4">Fruit Image</h2>
             
             {fruit && (

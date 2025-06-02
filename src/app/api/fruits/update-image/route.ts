@@ -12,7 +12,7 @@ export async function PUT(request: Request) {
     console.log("Update image request body:", body);
     
     // Validate required fields
-    if (!body.fruitId || !body.imageUrl) {
+    if (!body.fruitId || !body.image) {
       return NextResponse.json(
         { error: "Fruit ID and image URL are required" },
         { status: 400 }
@@ -29,11 +29,11 @@ export async function PUT(request: Request) {
     
     // Update fruit with image URL
     console.log("Updating fruit with ID:", body.fruitId);
-    console.log("Setting image to:", body.imageUrl);
+    console.log("Setting image to:", body.image);
     
     const updatedFruit = await Fruit.findByIdAndUpdate(
       body.fruitId,
-      { image: body.imageUrl },
+      { image: body.image },
       { new: true }
     );
     
