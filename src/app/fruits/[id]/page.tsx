@@ -12,9 +12,9 @@ import { Card, CardContent } from '@/components/ui/card';
 import { ExpandableText } from '@/components/ExpandableText';
 import { useParams } from 'next/navigation';
 import RelatedFruits from '@/components/RelatedFruits';
-import AdSenseBanner from '@/components/AdSenseBanner';
-import AdSenseSidebar from '@/components/AdSenseSidebar';
-import AdSenseMobile from '@/components/AdSenseMobile';
+// import AdSenseBanner from '@/components/AdSenseBanner';
+//import AdSenseSidebar from '@/components/AdSenseSidebar';
+//import AdSenseMobile from '@/components/AdSenseMobile';
 
 interface Fruit {
   _id: string;
@@ -146,12 +146,12 @@ export default function FruitDetailsPage() {
         </div>
 
         {/* Mobile Ad - Shows only on mobile */}
-        <div className="lg:hidden col-span-1">
+        {/* <div className="lg:hidden col-span-1">
           <AdSenseMobile 
             adSlot="4444444444"
             className="mb-4"
           />
-        </div>
+        </div> */}
 
         {/* Middle column - Details */}
         <div className="lg:col-span-2">
@@ -247,23 +247,23 @@ export default function FruitDetailsPage() {
         </div>
 
         {/* Right sidebar - Ads */}
-        <div className="lg:col-span-1 hidden lg:block">
+        {/* <div className="lg:col-span-1 hidden lg:block">
           <AdSenseSidebar 
             adSlot="1122334455"
             className="mb-8"
           />
-        </div>
+        </div> */}
       </div>
 
       {/* AdSense Banner - Before Related Fruits */}
-      <div className="my-4 md:my-8">
+      {/* <div className="my-4 md:my-8">
         <AdSenseBanner 
           adSlot="5544332211" 
           adFormat="auto"
           style={{ minHeight: '200px' }}
           className="w-full"
         />
-      </div>
+      </div> */}
 
       {/* Related Fruits Section */}
       <RelatedFruits currentFruit={fruit} maxItems={4} />

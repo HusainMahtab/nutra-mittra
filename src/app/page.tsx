@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import AdSenseBanner from "@/components/AdSenseBanner";
+// import AdSenseBanner from "@/components/AdSenseBanner";
 import banner1 from "../../public/banner1.png";
 import banner2 from "../../public/banner2.png";
 import banner3 from "../../public/banner3.png";
@@ -362,7 +362,7 @@ export default function Home() {
       </motion.section>
 
       {/* AdSense Banner - Top */}
-      <section className="py-4 md:py-8 bg-background">
+      {/* <section className="py-4 md:py-8 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <AdSenseBanner 
@@ -373,7 +373,7 @@ export default function Home() {
             />
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Filter Section */}
       <section id="collection-section" className="py-12 bg-card">
@@ -585,7 +585,7 @@ export default function Home() {
       </section>
 
       {/* AdSense Banner - Middle */}
-      <section className="py-4 md:py-8 bg-card">
+      {/* <section className="py-4 md:py-8 bg-card">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <AdSenseBanner 
@@ -596,7 +596,7 @@ export default function Home() {
             />
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Call to Action Section */}
       <motion.section
